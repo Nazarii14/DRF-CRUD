@@ -4,8 +4,8 @@ from django.urls import path
 
 urlpatterns = [
     path('homepage/', views.homepage, name='home-page'),
-    path('', views.list_posts, name='list-posts'),
-    path("<int:post_id>", views.post_detail, name='post-detail'),
-    path("<int:post_id>/update", views.update_post, name='update-post'),
-    path("<int:post_id>/delete", views.delete_post, name='delete-post'),
+    path('', views.PostListCreateView.as_view(), name='list_posts'),
+    path("<int:pk>", views.PostRetrieveUpdateDeleteView.as_view(), name="post-detail"),
+    path("current_user/", views.get_posts_for_current_user, name="current_user"),
+    path("posts_for/", views.ListPostsForAuthor.as_view(), name="posts_for_current_user"),
 ]
